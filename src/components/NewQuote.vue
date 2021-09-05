@@ -1,6 +1,9 @@
 <template>
   <div class="row">
     <form>
+      <div class="alert alert-danger text-center" v-if="!!error">
+        {{ error }}
+      </div>
       <div
         class="
           col-sm-8 col-sm-offset-2 col-xs-12 col-md-6 col-md-offset-3
@@ -16,16 +19,12 @@
           v-model="quote"
         ></textarea>
       </div>
-
       <div
         class="
           col-sm-8 col-sm-offset-2 col-xs-12 col-md-6 col-md-offset-3
           form-group
         "
       >
-        <div class="alert alert-danger text-center" v-if="!!error">
-          {{ error }}
-        </div>
         <button class="btn btn-primary" @click.prevent="createNew">
           Add Quote
         </button>
@@ -48,7 +47,7 @@ export default {
         this.error = 'Please write a quote!';
         setTimeout(() => {
           this.error = '';
-        }, 5000);
+        }, 4000);
         return;
       } else {
         this.$emit('quoteAdded', this.quote);
